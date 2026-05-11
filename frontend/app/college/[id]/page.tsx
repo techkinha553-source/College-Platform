@@ -25,7 +25,7 @@ export default function CollegePage({
 
   useEffect(() => {
     getCollegeById(resolvedParams.id).then(
-      (res: any) => {
+      (res: { data: { data: College } }) => {
         setCollege(res.data.data);
       }
     );
@@ -36,7 +36,7 @@ export default function CollegePage({
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-slate-950 to-slate-900 text-white p-6 md:p-10">
+    <div className="min-h-screen bg-linear-to-br from-black via-slate-950 to-slate-900 text-white p-6 md:p-10">
       <div className="max-w-6xl mx-auto">
         <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl shadow-2xl p-8 md:p-12 transition-all hover:border-white/20">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">

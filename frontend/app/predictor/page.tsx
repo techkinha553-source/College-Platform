@@ -26,7 +26,7 @@ export default function PredictorPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-linear-to-br from-slate-100 to-slate-200 flex items-center justify-center p-6">
       <div className="w-full max-w-3xl bg-white shadow-2xl rounded-3xl p-8 border border-slate-200">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-extrabold text-slate-800 mb-3">
