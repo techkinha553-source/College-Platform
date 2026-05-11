@@ -31,7 +31,7 @@ export default function Home() {
     <div className="min-h-screen bg-linear-to-br from-[#0f172a] via-[#1e293b] to-[#0b1220] text-white">
       {/* NAVBAR */}
       <div className="flex justify-between items-center p-6">
-        <h1 className="text-2xl font-bold">CollegeFinder AI</h1>
+        <h1 className="text-2xl font-extrabold">CollegeFinder AI</h1>
         <Link href="/login" className="px-4 py-2 bg-white text-black rounded">
           Login
         </Link>
@@ -62,8 +62,8 @@ export default function Home() {
           </Link>
 
           <Link
-            href="#best"
-            className="bg-purple-500 px-6 py-2 rounded"
+            href={filtered.length > 0 ? `/college/${filtered[0].id}` : "/"}
+            className="bg-purple-500 hover:bg-purple-600 transition px-6 py-2 rounded-lg font-semibold shadow-lg"
           >
             Best Colleges
           </Link>
@@ -71,7 +71,10 @@ export default function Home() {
       </div>
 
       {/* COLLEGE LIST */}
-      <div className="grid grid-cols-3 gap-6 p-10">
+      <div
+        id="best"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-10 scroll-mt-24"
+      >
         {filtered.map((college) => (
           <Link
             href={`/college/${college.id}`}

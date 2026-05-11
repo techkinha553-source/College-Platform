@@ -24,16 +24,25 @@ export default function RegisterPage() {
         body: JSON.stringify({ name, email, password }),
       });
 
-      const data = await res.json();
+      let data;
+
+      try {
+        data = await res.json();
+      } catch {
+        data = {};
+      }
 
       if (!res.ok) {
-        setError(data.error || "Registration failed");
+        setError(data.error || data.message || "Registration failed");
         return;
       }
 
-      router.push("/login");
-    } catch {
-      setError("Something went wrong");
+      localStorage.setItem("token", data.token || "");
+
+      router.push("/");
+    } catch (err) {
+      console.error("REGISTER ERROR:", err);
+      setError("Cannot connect to backend server");
     } finally {
       setLoading(false);
     }
@@ -43,7 +52,7 @@ export default function RegisterPage() {
     <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-green-500 via-blue-500 to-purple-600">
       <div className="w-95 bg-white p-8 rounded-2xl shadow-2xl">
 
-        <h1 className="text-2xl font-bold mb-6 text-center">
+        <h1 className="text-2xl font-bold mb-6 text-center text-black">
           Register
         </h1>
 
@@ -54,23 +63,24 @@ export default function RegisterPage() {
         )}
 
         <input
-          className="w-full border p-3 mb-3 rounded"
+          className="w-full border p-3 mb-3 rounded text-black"
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
 
         <input
-          className="w-full border p-3 mb-3 rounded"
+          className="w-full border p-3 mb-3 rounded text-black"
+          type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
 
         <input
-          className="w-full border p-3 mb-4 rounded"
-          placeholder="Password"
+          className="w-full border p-3 mb-4 rounded text-black"
           type="password"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -83,7 +93,7 @@ export default function RegisterPage() {
           {loading ? "Creating account..." : "Register"}
         </button>
 
-        <p className="text-center text-sm mt-4">
+        <p className="text-center text-sm mt-4 text-black">
           Already have account?{" "}
           <Link className="text-blue-600" href="/login">
             Login
