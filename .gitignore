@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+
+# Environment files
+.env
+.env.local
+
+# Node modules
+node_modules
+
+# Logs
+npm-debug.log
+
+# Build folders
+.next
+dist
+build
+
+# Prisma
+prisma/dev.db
+
+# Vercel
+.vercel
