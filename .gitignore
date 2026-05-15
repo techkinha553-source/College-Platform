@@ -21,3 +21,6 @@ prisma/dev.db
 
 # Vercel
 .vercel
+
+# env
+.env
